@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const Post = require('../model/Post')
 var ResponseWrapper = require('../responsewrapper');
+var Auth = require('../middlewares/auth');
 
-router.get('/' , async (req , res)=>{
+
+router.get('/' ,Auth,async (req , res)=>{
  var resp = new ResponseWrapper();
   try {
     const allposts = await Post.find();
@@ -12,7 +14,7 @@ router.get('/' , async (req , res)=>{
   }
 })
 
-router.post('/addpost' , async (req , res)=>{
+router.post('/addpost',Auth, async (req , res)=>{
     var resp = new ResponseWrapper();
     const newPost = new Post({
         title:req.body.title,
@@ -23,7 +25,7 @@ router.post('/addpost' , async (req , res)=>{
       });
       
       try {
-            var SavedPost = await newPost.save();
+            const SavedPost = await newPost.save();
             res.json(resp.GetSuccessResponse(SavedPost));
 
       } catch (error) {
@@ -32,7 +34,7 @@ router.post('/addpost' , async (req , res)=>{
 })
 
 
-router.put('/updatepost' , async (req , res)=>{
+router.put('/updatepost',Auth, async (req , res)=>{
     var resp = new ResponseWrapper();
       try {
             var UpdatePost = await Post.updateOne({_id:req.body._id},{$set:{
@@ -51,7 +53,7 @@ router.put('/updatepost' , async (req , res)=>{
 })
 
 
-router.get('/:Id' , async (req , res)=>{
+router.get('/:Id' ,Auth,async (req , res)=>{
     var resp = new ResponseWrapper();
     try {
         const post = await Post.findById(req.params.Id);
@@ -61,7 +63,7 @@ router.get('/:Id' , async (req , res)=>{
     }
 })
 
-router.delete('/:Id',async (req,res)=>{
+router.delete('/:Id',Auth,async (req,res)=>{
     var resp = new ResponseWrapper();
     try {
         const post = await Post.deleteOne({_id:req.params.Id})
