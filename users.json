@@ -1,0 +1,42 @@
+[
+   {
+      "name" : "Shayan",
+      "password" : "password1",
+      "profession" : "teacher",
+      "id": 1
+   },
+   
+    {
+      "name" : "Saad",
+      "password" : "password2",
+      "profession" : "librarian",
+      "id": 2
+   },
+   
+    {
+      "name" : "Muneeb",
+      "password" : "password3",
+      "profession" : "clerk",
+      "id": 3
+   },
+   {
+      "name" : "Azlan",
+      "password" : "password1",
+      "profession" : "teacher",
+      "id": 4
+   },
+   
+    {
+      "name" : "Ali",
+      "password" : "password2",
+      "profession" : "librarian",
+      "id": 5
+   },
+   
+    {
+      "name" : "Asfiyan",
+      "password" : "password3",
+      "profession" : "clerk",
+      "id": 6
+   }
+]
